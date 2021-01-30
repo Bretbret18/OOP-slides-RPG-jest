@@ -4,6 +4,8 @@ jest.mock('../lib/Potion.js');
 
 console.log(new Potion());
 
+////
+
 test('creates a health potion object', () => {
   const potion = new Potion('health');
 
