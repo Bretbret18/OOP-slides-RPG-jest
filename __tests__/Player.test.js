@@ -19,15 +19,6 @@ test('creates a player object', () => {
 
   ////
 
-  Player.prototype.isAlive = function() {
-    if (this.health === 0) {
-        return false;
-    }
-    return true;
-};
-
-////
-
   test("gets player's stats as an object", () => {
     const player = new Player('Dave');
 
@@ -36,10 +27,6 @@ test('creates a player object', () => {
     expect(player.getStats()).toHaveProperty('strength');
     expect(player.getStats()).toHaveProperty('agility');
 });
-
-  ////
-
-
 
   ////
 
@@ -90,9 +77,24 @@ test("subtracts from player's health", () => {
 
   ////
 
+test("gets player's attack value", () => {
+    const player = new Player('Dave');
+    player.strength = 10;
 
+    expect(player.getAttackValue()).toBeGreaterThanOrEqual(5);
+    expect(player.getAttackValue()).toBeLessThanOrEqual(15);
+});
 
   ////
+
+  test("adds a potion to the inventory", () => {
+      const player = new Player('Dave');
+      const oldCount = player.inventory.length;
+
+      player.addPotion(new Potion());
+
+      expect(player.inventory.length).toBeGreaterThan(oldCount);
+  });
 
 
 
